@@ -10,6 +10,7 @@ const EditUserScreen = ({ route: { params }, navigation: nav }) => {
   const [User, setUser] = useState({});
   const [editedUsername, setEditedUsername] = useState('');
   const [editedEmail, setEditedEmail] = useState('');
+  const [editedRole, setEditedRole] = useState('');
 
   const navigation = useNavigation();
 
@@ -21,6 +22,7 @@ const EditUserScreen = ({ route: { params }, navigation: nav }) => {
       setUser(data || {});
       setEditedUsername(data?.username || '');
       setEditedEmail(data?.email || '');
+      setEditedRole(data?.role || '');
     
     });
 
@@ -34,6 +36,7 @@ const EditUserScreen = ({ route: { params }, navigation: nav }) => {
     const updatedUser = {
       username: editedUsername,
       email: editedEmail,
+      role: editedRole,
      
     };
 
@@ -71,6 +74,13 @@ const EditUserScreen = ({ route: { params }, navigation: nav }) => {
         value={editedEmail}
         onChangeText={(text) => setEditedEmail(text)}
         multiline
+      />
+        <TextInput
+        style={styles.input}
+        placeholder="Edit Role Email"
+        value={editedRole}
+        onChangeText={(text) => setEditedRole(text)}
+      
       />
       
   
