@@ -7,11 +7,12 @@ import WeatherHeader from '../components/WeatherHeader';
 const CreateUserScreen = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
   const navigation = useNavigation();
 
   const handleAddUser = () => {
-    if (username.trim() === '' || email.trim() === '') {
-      alert('Username and email cannot be empty');
+    if (username.trim() === '' || email.trim() === '' || role.trim() === '') {
+      alert('Username,email and role cannot be empty');
       return;
     }
 
@@ -23,6 +24,7 @@ const CreateUserScreen = () => {
     const newUser = {
       username: username,
       email: email,
+      role:role,
     };
     navigation.navigate('UserList');
     set(newUserRef, newUser, (error) => {
@@ -32,6 +34,7 @@ const CreateUserScreen = () => {
         alert('User added successfully!');
         setUsername('');
         setEmail('');
+        setRole('');
         // Navigate back to UserListScreen after adding the user
        
       }
@@ -53,6 +56,13 @@ const CreateUserScreen = () => {
         placeholder="Enter Email"
         value={email}
         onChangeText={(text) => setEmail(text)}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Role"
+        value={role}
+        onChangeText={(text) => setRole(text)}
       />
       <TouchableOpacity
         style={styles.createButton}
